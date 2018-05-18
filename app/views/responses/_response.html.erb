@@ -1,0 +1,10 @@
+<div class="row">
+  <%= response.owner.name_or_guest %>
+  <div class="note">
+    <b><%= response.content %></b><br/>
+    <div class="_low">
+      <%= time_ago_in_words response.created_at %> ago
+    </div>
+  </div>
+</div>
+<br/>

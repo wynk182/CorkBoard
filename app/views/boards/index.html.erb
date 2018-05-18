@@ -1,0 +1,29 @@
+
+<div class="jumbo _nightblue _f-white" style=" margin-top: 55px;padding:20%;">
+  <%= form_tag search_path, remote: true do %>
+      <h4 class="_alignLeft">find or create a board</h4>
+      <div class="row">
+        <div class="col m10">
+
+          <%= text_field_tag :key_words, '', placeholder: 'search boards', style: 'width:100%;' %>
+          <!--<input type="text" placeholder="search boards" style="width:100%;text-align: center;">-->
+        </div>
+        <div class="col m2">
+          <%= submit_tag 'search', class: '_cream' %>
+        </div>
+      </div>
+
+  <% end %>
+</div>
+<div class="jumbo">
+  <div id="top_boards">
+    <%= render @boards %>
+  </div>
+  <div class="container" id="load_btn">
+    <%= button_to 'show more', {:controller => 'boards', :action => 'load_more', :board_ids => @boards.ids}, class: '_full-width _nightblue _large', remote: true %>
+  </div>
+
+</div>
+
+<div id="modal_spot"></div>
+

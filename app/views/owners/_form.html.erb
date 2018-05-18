@@ -1,0 +1,16 @@
+
+  <%= form_for @owner, url: my_info_path, remote: true do |form| %>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+
+      <%= form.hidden_field :code %>
+
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+      <p>
+        <%= form.submit 'save info', class: '_primary' %>
+      </p>
+
+
+  <% end %>
+

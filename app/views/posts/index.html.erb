@@ -1,0 +1,24 @@
+
+
+<div class="container">
+  <div class="row">
+    <h2 class="col m8 title"><%= @board.name %></h2>
+
+  </div>
+  <div class="row">
+    <div id="board_map" style="background-color: lightyellow;padding:1em;">
+      <%= render 'boards/map' %>
+
+    </div>
+  </div>
+
+  <%= render @posts %>
+
+
+</div>
+<div style="margin: 5em;"></div>
+<%= link_to 'New Post', new_board_post_path, class: 'button _nightblue _round',
+            style: 'position:fixed;position: fixed;bottom: 5%;right: 5%;z-index:10;' %>
+<style>
+
+</style>

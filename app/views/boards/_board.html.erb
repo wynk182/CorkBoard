@@ -1,0 +1,12 @@
+<div class="board">
+    <div class="container" style="padding:20px;">
+    <h4 class="_alignLeft alert" style="background-color:rgba(44, 62, 80, 0.5);">
+      <%= link_to board.name, board_posts_path(board.id) %>
+    </h4>
+      <%= render board.posts.where(:verified => true).order('Rand()').limit(4) %>
+
+  </div>
+
+</div>
+<br/>
+

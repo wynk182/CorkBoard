@@ -1,0 +1,26 @@
+<div id="search_results" class="modal">
+  <div class="modalbox-modal-content _cream" id="found_board">
+    <% if @found %>
+
+      <div class="container">
+        <p>choose a board from the results below or create a new one <%= link_to 'here', new_board_path %></p>
+        <% @board.each do |b| %>
+            <p>
+              <%= link_to b.name, board_posts_path(b), class: '_primary button _full-width _large' %>
+            </p>
+
+        <% end %>
+      </div>
+
+    <% else %>
+        <div class="jumbo">
+          <div class="container">
+            <h4>no boards found create a new one below</h4>
+            <%= render 'boards/form', board: @board %>
+          </div>
+
+        </div>
+
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col m4">
+      <%= image_tag((@post.upload) ? image_url(@post.upload.image.url(:large)) : '/placeholder-800x423.gif') %>
+    </div>
+    <div class="col m8">
+      <div class="_high"><%= link_to @post.board.name, board_posts_path(@post.board) %></div>
+      <h2><%= @post.title %></h2>
+
+      <div><b><%= time_ago_in_words @post.updated_at %> ago by <%= @post.owner.name_or_guest %></b>
+
+      <% if @owner && @owner.id == @post.owner_id %>
+          <% unless @post.verified? %>
+              <%= link_to 'edit', edit_board_post_path(@post.board, @post),
+                          class: '_xsmall _success button' %>
+          <% end %>
+          <%= link_to 'delete', board_post_path(@post.board, @post),
+                      class: '_xsmall _danger button', method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
+      <% end %>
+      </div>
+      <p class="_high">
+        <%= @post.content %>
+      </p>
+
+    </div>
+  </div>
+  <div class="row">
+  <% if @owner %>
+    <%= form_for @post.responses.new, remote: true do |f| %>
+        <p>have something to say? respond to this post</p>
+        <%= f.text_area :content, id: :content, style: 'width: 100%;' %>
+        <%= f.hidden_field :post_id, value: @post.id %>
+        <br/>
+        <%= f.submit 'respond', class: '_primary' %>
+    <% end %>
+  <% end %>
+    <div id="responses">
+      <%= render @post.responses.order('id desc').limit(5) %>
+    </div>
+    <%= button_to 'read all', "/load_responses/#{@post.id}", remote: true, class: '_nightblue' %>
+  </div>
+
+  <br/>
+</div>

@@ -1,0 +1,13 @@
+<% if @more %>
+document.getElementById('top_boards').innerHTML += '<%= escape_javascript render @more_boards %>';
+document.getElementById('load_btn').innerHTML =
+    '<%= escape_javascript button_to 'show more', {:controller => 'boards', :action => 'load_more', :board_ids => @ids}, class: '_full-width _nightblue _large', remote: true
+    #button_to 'show more',
+    #"/load_boards/#{@more_boards.last.id}",
+    # class: '_full-width _nightblue _large',
+    #  remote: true
+    %>';
+<% else %>
+<%=  %>
+alert('all boards shown');
+<% end %>

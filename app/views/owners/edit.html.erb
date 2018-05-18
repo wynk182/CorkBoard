@@ -1,0 +1,36 @@
+<div class="container" style="margin-top: 50px;">
+  <div id="sn1" class="snackbar">
+    copied to clipboard!
+  </div>
+  <div id="sn2" class="snackbar">
+    info saved!
+  </div>
+  <div class="row">
+
+      <h1 class="title col m6">contact info</h1>
+
+    <div class="col m6 _alignRight">
+      Your ID is <button class="_success" onclick="copyToClipboard()"><%= @owner.code %></button>
+    </div>
+  </div>
+
+  <p>
+  Responses to your posts will be sent to the email address you enter below.<br/>If you have another ID you can enter it
+  <%= link_to 'here', login_path %> to access your previous posts.<br/> Keep this ID safe and don't forget it!<br/>
+  By entering an email address below you are agreeing to our terms and conditions.
+  </p>
+  <%= render 'form' %>
+
+</div>
+<input type="hidden" value="<%= @owner.code %>" id="code">
+
+<script>
+    function copyToClipboard() {
+        var $temp = document.getElementById('code');
+        $temp.setAttribute('type', 'text');
+        $temp.select();
+        document.execCommand("copy");
+        $temp.setAttribute('type', 'hidden');
+        showsnackbar('sn1');
+    }
+</script>

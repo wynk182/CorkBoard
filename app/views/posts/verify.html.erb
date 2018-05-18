@@ -1,0 +1,35 @@
+<div class="container">
+  <% @posts.each do |post| %>
+    <div class="container">
+      <div class="col m2">
+        <%= image_tag image_url((post.upload) ? post.upload.image.url(:medium) : '/placeholder-800x423.gif'),
+                      id: "#{post.id}_img", onclick: "openimg('#{post.id}_img','imgb')" %>
+      </div>
+      <div class="col m10">
+        <div class="row">
+          <div class="col m8">
+            <%= post.title %>
+            <p><%= post.content %></p>
+          </div>
+          <div class="col m4">
+            <%= link_to 'delete', board_post_path(post.board, post),
+                        class: '_small _danger button', method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'verify', "verify_posts/#{post.id}", method: 'POST', class: 'button _small _alignRight _success' %>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  <% end %>
+</div>
+<div id="imgb" class="modal">
+  <span class="-close">✖</span>
+  <img class="modal-content">
+  <div class="caption"></div>
+</div>
+<%= javascript_include_tag 'beauter.min.js' %>

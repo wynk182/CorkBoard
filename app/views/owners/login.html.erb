@@ -1,0 +1,16 @@
+<div class="jumbo">
+  <%= form_for Owner.new, url: login_path do |f| %>
+      <h4>enter ID to access previous posts</h4>
+
+    <%= f.text_field :code %>
+      <br/>
+      <%= f.submit 'Login', class: '_primary' %>
+  <% end %>
+  <p>if you don't have an ID make your first post to create one!</p>
+  <p>if you have forgotten your ID enter your email here to recover it</p>
+  <%= form_for Owner.new, url: recover_path do |f| %>
+    <%= f.text_field :email %>
+      <br/>
+      <%= f.submit 'recover', class: '_success' %>
+  <% end %>
+</div>

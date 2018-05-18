@@ -1,0 +1,50 @@
+<%= form_for([@board, @post]) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :post_title, maxlength: '100', style: 'width:100%;' %>
+  </div>
+
+    <%= form.fields_for :upload do |f| %>
+        <div class="field">
+          <%= f.file_field :image %>
+
+        </div>
+    <% end %>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, id: :post_content, style: 'width:100%;' %>
+  </div>
+  <div class="field">
+
+  </div>
+  <% unless @owner %>
+  <div class="field">
+    <%= form.label :owner_code %>
+    <%= form.text_field :owner_code, id: :post_owner_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :owner_email %>
+    <%= form.text_field :owner_email, id: :post_owner_email %>
+  </div>
+  <% end %>
+
+
+
+  <div class="actions">
+    <%= form.submit class: '_nightblue button' %>
+  </div>
+<% end %>

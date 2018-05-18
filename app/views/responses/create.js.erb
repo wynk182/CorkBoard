@@ -1,0 +1,4 @@
+var responseHtml = document.getElementById('responses').innerHTML
+
+document.getElementById('responses').innerHTML = '<%= escape_javascript render @response %>' + responseHtml;
+document.getElementById('content').value = '';
